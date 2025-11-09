@@ -1,0 +1,307 @@
+/* =================================================================
+ *  1. ДИЗАЙН-СИСТЕМА (переменные)
+ * ================================================================= */
+:root {
+  /* Шрифты */
+  --font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+
+  /* Основной акцентный цвет (зеленый) */
+  --color-primary: #218821;
+  --color-primary-dark: #196d19; /* Для hover-эффектов */
+
+  /* Второстепенные цвета */
+  --color-secondary: #5c636a;
+  --color-secondary-dark: #494f54;
+
+  /* Цвета текста, фона и границ */
+  --color-text: #212529;
+  --color-text-muted: #6c757d;
+  --color-surface: #ffffff;
+  --color-background: #f4f7f6; /* Слегка сероватый фон */
+  --color-border: #dee2e6;
+  --color-focus-ring: rgba(33, 136, 33, 0.25);
+
+  /* Размеры */
+  --spacing-sm: 8px;
+  --spacing-md: 12px;
+  --spacing-lg: 20px;
+  --spacing-xl: 30px;
+
+  /* Эффекты */
+  --radius: 12px; /* Более заметные скругления */
+  --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+  --transition: 200ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* =================================================================
+ *  2. ГЛОБАЛЬНЫЕ СТИЛИ И СБРОС
+ * ================================================================= */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--color-background);
+  color: var(--color-text);
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: var(--spacing-md);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* =================================================================
+ *  3. ОСНОВНЫЕ КОМПОНЕНТЫ
+ * ================================================================= */
+.container {
+  background: var(--color-surface);
+  border-radius: var(--radius);
+  padding: var(--spacing-xl);
+  box-shadow: var(--shadow);
+  width: 100%;
+  max-width: 800px;
+  border: 1px solid var(--color-border);
+}
+
+.back-btn {
+  margin-right: 20px;
+  padding: 15px 30px;
+  background: var(--color-background);
+  color: var(--color-primary);
+  border: 0;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 16px;
+  border-radius: var(--radius)
+}
+.screen.active {
+  animation: fadeIn var(--transition) forwards;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+h1 {
+  color: var(--color-text);
+  font-size: clamp(1.5rem, 5vw, 2rem);
+  text-align: center;
+  font-weight: 700;
+  margin-bottom: var(--spacing-lg);
+}
+
+h2 {
+  font-size: clamp(1.1rem, 4vw, 1.25rem);
+  margin-bottom: var(--spacing-lg);
+  font-weight: 500;
+  text-align: left;
+  line-height: 1.5;
+}
+
+.header-with-back {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--spacing-lg);
+}
+
+/* --- Кнопки --- */
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 14px var(--spacing-md);
+  border: none;
+  border-radius: var(--radius);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform var(--transition), box-shadow var(--transition), background-color var(--transition);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+  text-decoration: none; /* Добавлено для ссылок, стилизованных под кнопки */
+}
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+.btn:active {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.btn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 4px var(--color-focus-ring);
+}
+
+.btn-primary {
+  background-color: var(--color-primary);
+  color: var(--color-surface);
+}
+.btn-primary:hover {
+  background-color: var(--color-primary-dark);
+}
+
+.btn-secondary {
+  background-color: var(--color-secondary);
+  color: var(--color-surface);
+}
+.btn-secondary:hover {
+  background-color: var(--color-secondary-dark);
+}
+
+/* --- Поля для ввода --- */
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 14px var(--spacing-md);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  font-size: 1rem;
+  font-family: inherit;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+input[type="text"]:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 4px var(--color-focus-ring);
+}
+
+/* =================================================================
+ *  4. СТИЛИ ЭКРАНОВ
+ * ================================================================= */
+
+/* --- Экран выбора языка --- */
+.language-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+.lang-btn {
+  padding: var(--spacing-md);
+  gap: var(--spacing-md); /* Расстояние между флагом и текстом */
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+}
+.lang-btn .flag {
+  font-size: 1.75rem; /* Контролируем размер флага */
+  line-height: 1; 
+  display: inline-block;
+}
+.lang-btn span {
+  font-weight: 500;
+}
+.lang-btn:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  background-color: rgba(33, 136, 33, 0.05);
+}
+
+/* --- Экран ввода данных --- */
+.form-actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-lg);
+}
+/* Для экранов пошире делаем кнопки в ряд */
+@media (min-width: 640px) {
+  .form-actions {
+    flex-direction: row;
+  }
+}
+
+/* --- Экран теста --- */
+.answers {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-lg);
+}
+.answer-btn {
+  justify-content: flex-start;
+  text-align: left;
+  font-weight: 500;
+  background: var(--color-surface);
+  color: var(--color-text);
+  border: 2px solid var(--color-border);
+}
+.answer-btn:hover {
+  border-color: var(--color-primary);
+  background-color: rgba(33, 136, 33, 0.05);
+}
+
+/* --- Прогресс-бар --- */
+.progress {
+  margin-top: var(--spacing-lg);
+}
+.progress-bar {
+  height: 10px;
+  background: #e9ecef;
+  border-radius: 99px;
+  margin-bottom: var(--spacing-sm);
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  background-color: var(--color-primary);
+  transition: width 300ms ease;
+}
+#progress-text {
+  color: var(--color-text-muted);
+  font-size: 0.8rem;
+  text-align: right;
+  display: block;
+}
+
+/* --- Экран результатов --- */
+.result-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-lg);
+}
+#score-text {
+  font-size: clamp(1.4rem, 5vw, 1.75rem);
+  color: var(--color-primary);
+  background: rgba(33, 136, 33, 0.07);
+  padding: var(--spacing-md) var(--spacing-lg);
+  border-radius: var(--radius);
+  border: 1px solid rgba(33, 136, 33, 0.2);
+  text-align: center;
+  font-weight: 600;
+  margin-bottom: var(--spacing-lg);
+}
+
+/* --- Загрузчик --- */
+.loader {
+  width: 50px;
+  height: 50px;
+  border: 5px solid #e9ecef;
+  border-top-color: var(--color-primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: var(--spacing-xl) auto;
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* =================================================================
+ *  5. АДАПТИВНОСТЬ
+ * ================================================================= */
+@media (max-width: 640px) {
+  .container {
+    padding: var(--spacing-lg);
+  }
+}
