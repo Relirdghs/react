@@ -75,7 +75,8 @@ body {
   cursor: pointer;
   font-weight: 500;
   font-size: 16px;
-  border-radius: var(--radius)
+  border-radius: var(--radius);
+  text-wrap: nowrap;
 }
 .screen.active {
   animation: fadeIn var(--transition) forwards;
@@ -90,7 +91,6 @@ h1 {
   font-size: clamp(1.5rem, 5vw, 2rem);
   text-align: center;
   font-weight: 700;
-  margin-bottom: var(--spacing-lg);
 }
 
 h2 {
@@ -303,5 +303,13 @@ input[type="text"]:focus {
 @media (max-width: 640px) {
   .container {
     padding: var(--spacing-lg);
+  }
+    h1{
+    font-size: 1.1rem;
+  }
+}
+@media(max-width:330px){
+  .back-btn{
+    padding: 15px;
   }
 }

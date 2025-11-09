@@ -48,7 +48,6 @@ const NameForm = ({ onStartTest, onBack, lang }) => {
             <div className="header-with-back">
                 <button type="button" className="back-btn" onClick={onBack}>← Назад</button>
                 <h1>{trans.formTitle}</h1>
-                <div style={{ width: '40px' }}></div>
             </div>
             <div className="input-group">
                 <input type="text" id="firstName" placeholder={trans.firstNamePlaceholder} value={formData.firstName} onChange={handleChange} required />
