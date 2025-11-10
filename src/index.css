@@ -238,6 +238,9 @@ input[type="text"]:focus {
   background: var(--color-surface);
   color: var(--color-text);
   border: 2px solid var(--color-border);
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-size: 15px;
 }
 .answer-btn:hover {
   border-color: var(--color-primary);
